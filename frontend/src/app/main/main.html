@@ -1,0 +1,13 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>All Articles</h1>
+            <div ng-repeat="article in vm.articlesService.articles">
+                <h2 class="article-title">{{ article.title }}</h2>
+                <div class="article-content">{{ article.content }}</div>
+            </div>
+        </div>
+    </div>
+
+</div>

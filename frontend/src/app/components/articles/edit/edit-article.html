@@ -1,0 +1,13 @@
+<div class="container">
+    <form novalidate>
+        <div class="form-group">
+            <label>Article title *</label>
+            <input type="text" class="form-control" ng-model="articlesService.article.title" required/>
+        </div>
+        <div class="form-group">
+            <label>Article content</label>
+            <textarea class="form-control" rows="3" ng-model="articlesService.article.content"></textarea>
+        </div>
+        <input type="submit" class="btn btn-success" ng-click="newArticle(articlesService.article)" value="Create"/>
+    </form>
+</div>
