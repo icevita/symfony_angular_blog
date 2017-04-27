@@ -30,11 +30,6 @@ class ArticleController extends FOSRestController
         $em       = $this->getDoctrine()->getManager();
         $articles = $em->getRepository('AppBundle:Article')->findAll();
 
-        // Can't get articles => 404 of course !
-        if ($articles === null) {
-            return new JsonResponse('No data found', 404);
-        }
-
         return $articles;
     }
 
@@ -59,7 +54,6 @@ class ArticleController extends FOSRestController
             $em->persist($article);
             $em->flush();
         } else {
-            // Can't create article => 409 of course ! (conflict)
             return new JsonResponse((string)$form->getErrors(true), 409);
         }
 
@@ -80,11 +74,6 @@ class ArticleController extends FOSRestController
         $em      = $this->getDoctrine()->getManager();
         /** @var Article $article */
         $article = $em->getRepository('AppBundle:Article')->find($id);
-
-        // No article to get => 404 of course !
-        if ($article === null) {
-            return new JsonResponse('No data found', 404);
-        }
 
         return $article;
     }
@@ -107,8 +96,7 @@ class ArticleController extends FOSRestController
 
         $form = $this->createForm(ArticleType::class, $article, ['method' => 'PUT']);
         $form->handleRequest($request);
-
-        // No article to edit => 404 of course !
+        
         if ($article === null) {
             return new JsonResponse('No data found', 404);
         }
@@ -137,7 +125,6 @@ class ArticleController extends FOSRestController
         /** @var Article $article */
         $article = $em->getRepository('AppBundle:Article')->find($id);
 
-        // No article to delete => 404 of course !
         if ($article === null) {
             return new JsonResponse('No data found', 404);
         }
